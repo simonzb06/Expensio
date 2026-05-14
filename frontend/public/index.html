@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Expensio - Dashboard Pro</title>
+  
+  <link rel="stylesheet" href="base/variable.css">
+  <link rel="stylesheet" href="layout/layout.css">
+  <link rel="stylesheet" href="layout/sidebar.css">
+  <link rel="stylesheet" href="components/buttons.css">
+  <link rel="stylesheet" href="components/cards.css">
+  <link rel="stylesheet" href="components/table.css">
+  <link rel="stylesheet" href="components/modal.css">
+  <link rel="stylesheet" href="pages/dashboard.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="pages/login.css">
+  <link rel="stylesheet" href="pages/admin.css">
+  <link rel="stylesheet" href="layout/main.css">
+  <link rel="stylesheet" href="layout/sidebar-balance.css">
+  <link rel="stylesheet" href="layout/cards.css">
+  <link rel="stylesheet" href="layout/dashboard-phase4.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dark-theme">
+  <div class="dashboard-wrapper">
+    
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="notification-shell">
+          <button class="sidebar-notification" type="button" aria-label="Notificaciones" aria-expanded="false" aria-controls="notificationDropdown">
+            <span aria-hidden="true">🔔</span>
+            <span class="notification-count" id="notificationCount" hidden>0</span>
+            <span class="notification-dot" aria-hidden="true"></span>
+          </button>
+          <div class="notification-dropdown" id="notificationDropdown" hidden>
+            <div class="notification-dropdown-header">
+              <div>
+                <span class="notification-kicker">Centro</span>
+                <strong>Notificaciones</strong>
+              </div>
+              <button type="button" id="markAllNotificationsRead">Leer todas</button>
+            </div>
+            <div class="notification-list" id="notificationList"></div>
+            <div class="notification-dropdown-footer">
+              <button type="button" id="openNotificationsTickets">Ver tickets</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-profile">
+          <div class="avatar" id="userAvatar">SF</div>
+          <div class="user-info">
+            <h3 id="displayUserName">Administrador</h3>
+            <small><span class="online-dot"></span>Online</small>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-section="dashboard">🏠 Inicio</button>
+        <button class="nav-item" data-section="gastos">📊 Gastos</button>
+        <button class="nav-item" data-section="tarjetas">💳 Tarjetas</button>
+        <button class="nav-item" data-section="analisis">📈 Análisis</button>
+        <button class="nav-item" data-section="tasks">📝 Tareas</button>
+        <button class="nav-item" data-section="config">⚙️ Ajustes</button>
+        <button id="adminNav" class="nav-item admin-only" data-section="admin" hidden>🔐 Admin</button>
+        <div class="nav-spacer" style="flex-grow: 1;"></div>
+        <button id="sidebarLogin" class="nav-item login-highlight">
+          <i class= 'bx bx-key'></i>
+          <span>🔑 Entrar</span>
+        </button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-title">
+          <span>Panel</span>
+          <h1 id="mainTitleDisplay">Dashboard Principal</h1>
+        </div>
+      </header>
+
+      <div class="content">
+        
+        <section id="view-dashboard" class="view">
+          <div class="dashboard-overview-grid">
+            <div class="dashboard-kpi-card">
+              <span>Total gastado del mes</span>
+              <strong id="dashboardMonthlyTotal">$0</strong>
+            </div>
+            <div class="dashboard-kpi-card">
+              <span>Cantidad de gastos</span>
+              <strong id="dashboardExpensesCount">0</strong>
+            </div>
+            <div class="dashboard-kpi-card">
+              <span>Tareas pendientes</span>
+              <strong id="dashboardPendingTasks">0</strong>
+            </div>
+            <div class="dashboard-kpi-card">
+              <span>Tarjetas registradas</span>
+              <strong id="dashboardCardsCount">0</strong>
+            </div>
+          </div>
+
+          <div class="pro-row">
+            <div class="pro-panel dashboard-panel dashboard-tasks-panel">
+              <span class="panel-tag">Tareas Pendientes</span>
+              <div class="task-group" id="tasksContainer">
+              </div>
+            </div>
+
+            <div class="pro-panel dashboard-panel dashboard-expenses-panel">
+              <span class="panel-tag">Gastos Recientes</span>
+              <table class="clean-table">
+                <thead>
+                  <tr><th>Sujeto</th><th>Monto</th></tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                  </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="pro-panel action-row dashboard-actions-panel">
+            <span class="panel-tag">Acciones Rápidas</span>
+            <div class="action-flex">
+              <button class="tile-btn" id="openAddExpense">
+                <div class="tile-icon o">💰</div> Gasto
+              </button>
+              <button class="tile-btn" id="openAddCard">
+                <div class="tile-icon b">💳</div> Tarjeta
+              </button>
+              <button class="tile-btn" id="openTicketModal">
+                <div class="tile-icon p">🎫</div> Soporte
+              </button>
+              <button class="tile-btn" id="openTasksView">
+                <div class="title-icon g">📝</div> Tarea
+              </button>
+            </div>
+          </div>
+
+          <div class="pro-row">
+            <div class="pro-panel dashboard-panel dashboard-utility-panel">
+              <span class="panel-tag">Informe Mensual</span>
+              <div class="dashboard-chart-frame">
+                <canvas id="monthlyTrendChart"></canvas>
+                <div class="dashboard-chart-empty" id="monthlyTrendEmpty" hidden>
+                  <strong>Sin datos suficientes</strong>
+                  <span>Registra gastos este mes para ver la tendencia semanal.</span>
+                </div>
+              </div>
+            </div>
+            <div class="pro-panel dashboard-panel dashboard-utility-panel">
+              <span class="panel-tag">Gastos Diarios</span>
+              <div class="dashboard-chart-frame">
+                <canvas id="dailyBarChart"></canvas>
+                <div class="dashboard-chart-empty" id="dailyBarEmpty" hidden>
+                  <strong>Sin gastos recientes</strong>
+                  <span>Cuando agregues movimientos apareceran los ultimos 7 dias.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-gastos" class="view" style="display:none;">
+          <div class="pro-panel">
+            <span class="panel-tag">Historial de Gastos</span>
+            <h1>Historial Detallado</h1>
+            <div class="expenses-summary-grid">
+              <div class="expenses-kpi-card">
+                <span>Total del mes</span>
+                <strong id="expensesMonthlyTotal">$0</strong>
+              </div>
+              <div class="expenses-kpi-card">
+                <span>Cantidad de gastos</span>
+                <strong id="expensesCount">0</strong>
+              </div>
+              <div class="expenses-kpi-card">
+                <span>Promedio por gasto</span>
+                <strong id="expensesAverage">$0</strong>
+              </div>
+              <div class="expenses-kpi-card">
+                <span>Categoría más usada</span>
+                <strong id="expensesTopCategory">Sin datos</strong>
+              </div>
+            </div>
+            <div class="expenses-history-card">
+              <table class="clean-table expenses-history-table">
+                <thead>
+                  <tr><th>Fecha</th><th>Categoría</th><th>Tarjeta</th><th>Monto</th></tr>
+                </thead>
+                <tbody id="fullExpensesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-tarjetas" class="view" style="display:none;">
+          <div class="pro-panel">
+            <span class="panel-tag">Mis Tarjetas</span>
+            <div id="cardsContainerMain" class="cards-grid">
+               </div>
+          </div>
+        </section>
+
+        <section id="view-analisis" class="view" style="display:none;">
+          <div class="pro-panel">
+            <span class="panel-tag">Análisis de Datos</span>
+            <h1>Gráficas y Proyecciones</h1>
+            <div class="analysis-container">
+              <div class="chart-card chart-card--main">
+                <h3>Flujo de Efectivo (7 días)</h3>
+                <canvas id="flowChart" class="line-chart"></canvas>
+              </div>
+              <div class="analysis-kpi-card">
+                <span>Total del mes</span>
+                <strong id="analysisMonthlyTotal">$0</strong>
+              </div>
+              <div class="analysis-kpi-card">
+                <span>Promedio por gasto</span>
+                <strong id="analysisExpenseAverage">$0</strong>
+                <small id="analysisTransactionCount">0 gastos</small>
+              </div>
+              <div class="chart-card chart-card--secondary">
+                <h3>Gastos por Categoría</h3>
+                <canvas id="categoryChart" class="donut-chart"></canvas>
+              </div>
+              <div class="chart-card chart-card--secondary">
+                <h3>Gastos por Tarjeta</h3>
+                <canvas id="cardSpendChart" class="analysis-chart"></canvas>
+              </div>
+              <div class="chart-card chart-card--secondary">
+                <h3>Tendencia Semanal</h3>
+                <canvas id="weeklyTrendChart" class="analysis-chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-config" class="view" style="display:none;">
+          <div class="settings-layout">
+            <div class="pro-panel settings-profile-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <span class="panel-tag">Ajustes de Perfil</span>
+                  <h2>Preferencias</h2>
+                </div>
+              </div>
+              <form id="settings-form" class="settings-form">
+                <div class="settings-form-grid">
+                  <label class="settings-field">
+                    <span>Nombre de Usuario</span>
+                    <input type="text" name="userName" id="setUserName" placeholder="Tu Nombre">
+                  </label>
+
+                  <label class="settings-field">
+                    <span>Moneda</span>
+                    <select id="currency-select">
+                      <option value="USD">Dolar estadounidense (USD)</option>
+                      <option value="COP">Peso Colombiano (COP)</option>
+                      <option value="EUR">Euro (EUR)</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div class="settings-avatar-row">
+                  <div>
+                    <span>Foto de Perfil</span>
+                    <small id="fileNameDisplay">Sin foto seleccionada</small>
+                  </div>
+                  <input type="file" id="inputAvatar" accept="image/*" hidden>
+                  <button class="settings-secondary-btn" type="button" onclick="document.getElementById('inputAvatar').click()">
+                    <i class='bx bx-upload'></i> Subir
+                  </button>
+                </div>
+
+                <div class="settings-actions">
+                  <button type="submit" class="settings-primary-btn">Guardar Cambios</button>
+                  <button type="button" class="settings-danger-btn" onclick="resetApp()">Borrar datos</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="pro-panel user-support-panel">
+              <div class="user-support-header">
+                <div>
+                  <span class="panel-tag">Centro de Ayuda</span>
+                  <h2>Mis Tickets</h2>
+                </div>
+                <button class="settings-secondary-btn" id="refreshUserTickets" type="button">Actualizar</button>
+              </div>
+              <div class="user-ticket-layout">
+                <div class="user-ticket-list" id="userTicketList"></div>
+                <div class="user-ticket-detail" id="userTicketDetail">
+                  <div class="user-ticket-empty" id="userTicketEmpty">Selecciona un ticket para revisar respuestas y estado</div>
+                  <div class="user-ticket-content" id="userTicketContent" hidden>
+                    <div class="user-ticket-head">
+                      <div>
+                        <span id="userTicketMeta">Ticket</span>
+                        <strong id="userTicketSubject">Sin asunto</strong>
+                      </div>
+                      <em class="admin-ticket-status pending" id="userTicketStatus">Pendiente</em>
+                    </div>
+                    <div class="ticket-conversation" id="userTicketConversation"></div>
+                    <form id="userTicketReplyForm" class="user-ticket-reply">
+                      <input type="hidden" id="userTicketId" name="ticketId">
+                      <textarea id="userTicketReply" name="message" placeholder="Responder al equipo de soporte"></textarea>
+                      <button class="settings-primary-btn" type="submit">Enviar respuesta</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-tasks" class="view" style="display:none;">
+          <div class="main-title">
+              <i class='bx bx-list-check'></i>
+              <h1>Gestión de Tareas</h1>
+          </div>
+
+          <div class="pro-panel add-task-panel" style="margin-bottom: 20px;">
+              <span class="panel-tag">Añadir Nueva Tarea</span>
+              <form id="formAddTask" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <input type="text" id="task-title" placeholder="Título de la tarea" required style="flex-grow: 1; padding: 10px; background: #0d1117; color: white; border: 1px solid #30363d; border-radius: 4px;">
+                  <select id="task-priority" style="padding: 10px; background: #0d1117; color: white; border: 1px solid #30363d; border-radius: 4px;">
+                      <option value="baja">Prioridad Baja</option>
+                      <option value="media" selected>Prioridad Media</option>
+                      <option value="alta">Prioridad Alta</option>
+                  </select>
+                  <button type="submit" class="tile-btn active" style="padding: 10px 20px;">Añadir</button>
+              </form>
+          </div>
+
+          <div class="tasks-container">
+            <div class="task-column pending-column">
+              <h3>Pendientes</h3>
+              <ul id="pendingTasksList" class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+              </ul>
+            </div>
+
+            <div class="task-column progress-column">
+              <h3>En Curso</h3>
+              <ul id="progressTasksList" class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+              </ul>
+            </div>
+
+            <div class="task-column completed-column">
+              <h3>Completadas</h3>
+              <ul id="completedTasksList" class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-admin" class="view" style="display:none;">
+          <div class="admin-shell">
+            <div class="admin-header">
+              <div>
+                <span class="panel-tag">Admin</span>
+                <h1>Panel Admin</h1>
+                <p>Gestión y monitoreo del sistema</p>
+              </div>
+              <div class="admin-header-actions">
+                <span class="admin-sync-badge"><span></span><em id="adminLastSync">Sin sincronizar</em></span>
+                <button class="admin-refresh-btn" id="refreshAdminPanel" type="button">Actualizar</button>
+              </div>
+            </div>
+
+            <div class="admin-section admin-metrics-section">
+              <div class="admin-section-title">
+                <span>Resumen</span>
+              </div>
+              <div class="admin-summary-bar">
+                <div class="admin-summary-item">
+                  <span>Usuarios</span>
+                  <strong id="adminMetricUsers">0</strong>
+                </div>
+                <div class="admin-summary-item">
+                  <span>Tickets</span>
+                  <strong id="adminMetricOpenTickets">0</strong>
+                </div>
+                <div class="admin-summary-item">
+                  <span>Eventos</span>
+                  <strong id="adminMetricEvents">0</strong>
+                </div>
+                <div class="admin-summary-item admin-summary-status">
+                  <span>Backend</span>
+                  <strong id="adminMetricBackend">-</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-section admin-support-section">
+              <div class="admin-panel admin-tickets-panel">
+                <div class="admin-panel-title">
+                  <span>Reportes de soporte</span>
+                  <button class="admin-refresh-btn" id="refreshAdminTickets" type="button">Actualizar tickets</button>
+                </div>
+                <div class="admin-ticket-layout">
+                  <div class="admin-ticket-list" id="adminTicketList"></div>
+                  <form class="admin-ticket-detail" id="adminTicketForm">
+                    <input type="hidden" id="adminTicketId" name="ticketId">
+                    <div class="admin-ticket-empty" id="adminTicketEmpty">Selecciona un ticket para revisarlo</div>
+                    <div class="admin-ticket-content" id="adminTicketContent" hidden>
+                      <div class="admin-ticket-head">
+                        <div>
+                          <span id="adminTicketMeta">Ticket</span>
+                          <strong id="adminTicketSubject">Sin asunto</strong>
+                        </div>
+                        <select id="adminTicketStatus" name="status">
+                          <option value="pending">Pendiente</option>
+                          <option value="in_progress">En proceso</option>
+                          <option value="responded">Respondido</option>
+                          <option value="resolved">Resuelto</option>
+                        </select>
+                      </div>
+                      <div class="admin-ticket-message" id="adminTicketMessage"></div>
+                      <label for="adminTicketResponse">Respuesta</label>
+                      <textarea id="adminTicketResponse" name="response" placeholder="Escribe una respuesta para el usuario"></textarea>
+                      <button class="admin-refresh-btn" type="submit">Guardar respuesta</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-grid">
+              <div class="admin-panel admin-panel-wide admin-logs-panel">
+                <div class="admin-panel-title">
+                  <span>Registro del sistema</span>
+                </div>
+                <div id="adminAuditLogs" class="admin-list admin-audit-list"></div>
+              </div>
+
+              <div class="admin-panel admin-system-panel">
+                <div class="admin-panel-title">
+                  <span>Sistema</span>
+                </div>
+                <div class="admin-system-list">
+                  <div><span><i></i>API</span><strong id="adminSystemApi">-</strong></div>
+                  <div><span><i></i>DB</span><strong id="adminSystemDb">-</strong></div>
+                  <div><span><i></i>Servidor</span><strong id="adminSystemTime">-</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div> </main>
+  </div>
+
+  <div id="loginOverlay" class="login-overlay">
+    <div class="login-container">
+      <h2>Bienvenido a Expensio</h2>
+      <p>Gestiona tus finanzas</p>
+      <form id="formLogin" class="login-form">
+        <input type="email" id="loginEmail" name="email" placeholder="Correo" required autocomplete="username">
+        <input type="password" id="loginPassword" name="password" placeholder="Contraseña" required autocomplete="current-password">
+        <button type="submit" class="login-btn">Entrar al Sistema</button>
+      </form>
+      <div class="divider">o continuar con</div>
+      <div id="googleBtnContainer" style="display: flex; justify-content: center; width: 100%; min-height: 44px; ">
+        <div id="googleBtn"></div> </div> 
+      <button class="btn-ghost" onclick="toggleModal('loginOverlay', false)">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalAddExpense" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Nuevo Gasto</h2>
+        <span id="closeAddExpense" class="close-modal" onclick="toggleModal('modalAddExpense', false)">&times;</span>
+      </div>
+      <form id="formAddExpense">
+        <input type="date" name="date" required>
+        <input type="number" name="amount" placeholder="Valor" required>
+        <select name="category" required>
+          <option value="General">General</option>
+          <option value="Comida">Comida</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Ocio">Ocio</option>
+          <option value="Servicios">Servicios</option>
+        </select>
+        <select name="card_selected" id="expenseCardSelect">
+          <option value="">Selecciona una tarjeta...</option>
+        </select>
+        <button type="submit" class="tile-btn active">Guardar</button>
+        <button type="button" class="title-cancel" onclick="toggleModal('modalAddExpense', false)">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalAddCard" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Vincular Tarjeta</h2>
+        <span id="closeAddCard" class="close-modal" onclick="toggleModal('modalAddCard', false)">&times;</span>
+      </div>
+      <form id="formAddCard">
+        <input type="text" name="holder" placeholder="Nombre del Titular" required>
+        <input type="text" name="first4" placeholder="Primeros 4 digitos" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required>
+        <input type="text" name="last4" placeholder="Ultimos 4 digitos" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required>
+        <select name="type">
+          <option value="Débito">Débito</option>
+          <option value="Crédito">Crédito</option>
+        </select>
+        <button type="submit" class="tile-btn active">Agregar</button>
+        <button type="button" class="title-cancel" onclick="toggleModal('modalAddCard',false)">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalCardBalance" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Balance de Tarjeta</h2>
+        <span id="closeCardBalance" class="close-modal" onclick="toggleModal('modalCardBalance', false)">&times;</span>
+      </div>
+      <form id="formCardBalance">
+        <input type="hidden" name="card_key" id="cardBalanceKey">
+        <p id="cardBalanceLabel" class="modal-helper-text">Tarjeta seleccionada</p>
+        <input type="number" name="balance" id="cardBalanceInput" placeholder="Balance" step="0.01" required>
+        <button type="submit" class="tile-btn active">Guardar Balance</button>
+        <button type="button" class="title-cancel" onclick="toggleModal('modalCardBalance',false)">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalTicket" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Soporte</h2>
+        <span id="closeTicket" class="close-modal" onclick="toggleModal('modalTicket', false)">&times;</span>
+      </div>
+      <form id="formTicket">
+        <input type="text" name="subject" placeholder="Asunto" required>
+        <textarea name="message" placeholder="Describe tu problema"></textarea>
+        <button type="submit" class="tile-btn active">Enviar</button>
+        <button type="button" class="title-cancel" onclick="toggleModal('modalTicket', false)">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
+  <script src="app.js"></script>
+</body>
+</html>

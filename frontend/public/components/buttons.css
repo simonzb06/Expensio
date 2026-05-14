@@ -1,0 +1,136 @@
+body.dark-theme .action-flex button.tile-btn {
+    all: unset !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    
+    background: #161b22 !important; 
+    border: 1px solid #30363d !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    color: #f0f6fc !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
+    text-align: center !important;
+    transition: background 0.2s, border-color 0.2s !important;
+}
+
+body.dark-theme .action-flex button.tile-btn:hover {
+    background: #21262d !important;
+    border-color: #58a6ff !important;
+}
+
+body.dark-theme .tile-icon {
+    font-size: 1.2rem;
+    display: block;
+}
+
+
+.modal-action-row {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; 
+    margin-top: 20px;
+}
+
+body.dark-theme .modal button.tile-btn,
+body.dark-theme .modal button.tile-btn.active {
+    all: unset !important;
+    background: #161b22 !important;
+    color: #f0f6fc !important;
+    border: 1px solid #30363d !important;
+    padding: 10px 20px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.2s !important;
+}
+
+body.dark-theme .modal button.tile-btn:hover {
+    background: #21262d !important;
+}
+
+body.dark-theme .modal .btn-cancel,
+body.dark-theme .modal button[type="button"] {
+    all: unset !important;
+    background: transparent !important;
+    color: #8b949e !important; 
+    border: 1px solid transparent !important;
+    padding: 10px 20px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
+    transition: 0.2s !important;
+    margin: 0 !important; 
+}
+
+.tile-icon {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+
+body.dark-theme .modal .btn-cancel:hover {
+    color: #ff7b72 !important; 
+    background: rgba(255, 123, 114, 0.1) !important;
+}
+
+.action-flex .tile-btn {
+    all: unset !important;
+    cursor: pointer;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    background: #161b22 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 12px !important;
+    padding: 20px 10px !important;
+    color: #f0f6fc !important;
+    min-width: 100px;
+    flex: 1; 
+    transition: 0.2s;
+}
+
+.action-flex .tile-btn:hover {
+    background: #21262d !important;
+    border-color: #58a6ff !important;
+    transform: translateY(-3px);
+}
+
+.modal-action-row {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.modal .btn-primary {
+    background: #238636; 
+    color: white;
+    border: 1px solid rgba(240, 246, 252, 0.1);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.modal .btn-cancel {
+    background: transparent;
+    color: #f85149; 
+    border: 1px solid transparent;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal .btn-cancel:hover {
+    background: rgba(248, 81, 73, 0.1);
+}

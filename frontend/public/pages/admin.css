@@ -1,0 +1,782 @@
+#view-admin {
+  color: #edf2ff;
+}
+
+#view-admin .admin-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#view-admin .admin-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid rgba(168, 85, 247, 0.22);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(168, 85, 247, 0.16), rgba(88, 166, 255, 0.06)),
+    rgba(13, 17, 23, 0.88);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.20);
+}
+
+#view-admin .admin-header h1 {
+  margin: 8px 0 0;
+  font-size: 1.48rem;
+  line-height: 1.1;
+}
+
+#view-admin .admin-header p {
+  margin: 8px 0 0;
+  color: #9aa7bd;
+  font-size: 0.88rem;
+}
+
+#view-admin .admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+#view-admin .admin-sync-badge {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid rgba(46, 160, 67, 0.22);
+  border-radius: 999px;
+  background: rgba(46, 160, 67, 0.09);
+  color: #b7f7c6;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+#view-admin .admin-sync-badge span {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #3fb950;
+  box-shadow: 0 0 0 4px rgba(63, 185, 80, 0.12);
+}
+
+#view-admin .admin-sync-badge em {
+  font-style: normal;
+}
+
+#view-admin .admin-section {
+  display: grid;
+  gap: 10px;
+}
+
+#view-admin .admin-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #9aa7bd;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+#view-admin .admin-refresh-btn {
+  border: 1px solid rgba(168, 85, 247, 0.34);
+  border-radius: 8px;
+  padding: 9px 13px;
+  background: rgba(168, 85, 247, 0.12);
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+#view-admin .admin-refresh-btn:hover {
+  background: rgba(168, 85, 247, 0.20);
+}
+
+#view-admin .admin-summary-bar {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid rgba(139, 148, 158, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.014)),
+    rgba(13, 17, 23, 0.86);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+#view-admin .admin-summary-item {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid rgba(139, 148, 158, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.026);
+}
+
+#view-admin .admin-summary-item span {
+  color: #9aa7bd;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+#view-admin .admin-summary-item strong {
+  color: #f8fafc;
+  font-size: 0.84rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+#view-admin .admin-summary-status strong {
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(46, 160, 67, 0.20);
+  background: rgba(46, 160, 67, 0.11);
+  color: #7ee787;
+  font-size: 0.74rem;
+}
+
+#view-admin .admin-panel {
+  border: 1px solid rgba(139, 148, 158, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.014)),
+    rgba(13, 17, 23, 0.86);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+#view-admin .admin-system-list span {
+  display: block;
+  color: #9aa7bd;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+#view-admin .admin-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.58fr) minmax(260px, 0.72fr);
+  gap: 14px;
+  align-items: start;
+}
+
+#view-admin .admin-panel {
+  padding: 16px;
+}
+
+#view-admin .admin-panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+#view-admin .admin-activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#view-admin .admin-activity-grid h3 {
+  margin: 0 0 10px;
+  color: #cdd7ea;
+  font-size: 0.88rem;
+}
+
+#view-admin .admin-list {
+  display: grid;
+  gap: 8px;
+}
+
+#view-admin .admin-list-item {
+  position: relative;
+  min-height: 58px;
+  padding: 10px 10px 10px 22px;
+  border: 1px solid rgba(139, 148, 158, 0.10);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.026);
+}
+
+#view-admin .admin-audit-item::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 16px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #58a6ff;
+  box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.10);
+}
+
+#view-admin .admin-list-item strong,
+#view-admin .admin-list-item span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#view-admin .admin-list-item strong {
+  color: #f8fafc;
+  font-size: 0.88rem;
+}
+
+#view-admin .admin-list-item span {
+  margin-top: 5px;
+  color: #9aa7bd;
+  font-size: 0.75rem;
+}
+
+#view-admin .admin-audit-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-height: 330px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+#view-admin .admin-audit-item small {
+  display: block;
+  margin-top: 6px;
+  color: #77859a;
+  font-size: 0.72rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#view-admin .admin-empty {
+  padding: 22px 14px;
+  border: 1px dashed rgba(139, 148, 158, 0.18);
+  border-radius: 8px;
+  color: #9aa7bd;
+  font-size: 0.82rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+#view-admin .admin-system-list {
+  display: grid;
+  gap: 10px;
+}
+
+#view-admin .admin-system-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(139, 148, 158, 0.10);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.024);
+}
+
+#view-admin .admin-system-list div:last-child {
+  border-bottom: 1px solid rgba(139, 148, 158, 0.10);
+}
+
+#view-admin .admin-system-list strong {
+  color: #7ee787;
+  font-size: 0.78rem;
+  text-align: right;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(46, 160, 67, 0.11);
+  border: 1px solid rgba(46, 160, 67, 0.16);
+}
+
+#view-admin .admin-system-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#view-admin .admin-system-list i {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 999px;
+  background: #3fb950;
+  box-shadow: 0 0 0 4px rgba(63, 185, 80, 0.10);
+}
+
+#view-admin .admin-tickets-panel {
+  padding: 16px;
+}
+
+#view-admin .admin-ticket-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.62fr) minmax(0, 1.38fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+#view-admin .admin-ticket-list {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  max-height: 390px;
+  overflow: auto;
+  padding: 2px;
+}
+
+#view-admin .admin-ticket-item {
+  width: 100%;
+  min-height: 74px;
+  padding: 12px;
+  border: 1px solid rgba(139, 148, 158, 0.10);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #edf2ff;
+  text-align: left;
+  cursor: pointer;
+}
+
+#view-admin .admin-ticket-item:hover,
+#view-admin .admin-ticket-item.active {
+  border-color: rgba(88, 166, 255, 0.32);
+  background:
+    linear-gradient(90deg, rgba(88, 166, 255, 0.10), rgba(168, 85, 247, 0.045)),
+    rgba(255, 255, 255, 0.035);
+}
+
+#view-admin .admin-ticket-item strong,
+#view-admin .admin-ticket-item span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#view-admin .admin-ticket-item strong {
+  font-size: 0.9rem;
+}
+
+#view-admin .admin-ticket-item span,
+#view-admin .admin-ticket-head span,
+#view-admin .admin-ticket-detail label {
+  color: #9aa7bd;
+  font-size: 0.74rem;
+}
+
+#view-admin .admin-ticket-status,
+#view-config .admin-ticket-status {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(139, 148, 158, 0.12);
+  color: #cdd7ea;
+  font-size: 0.7rem;
+}
+
+#view-admin .admin-ticket-status.pending,
+#view-config .admin-ticket-status.pending {
+  background: rgba(210, 153, 34, 0.14);
+  color: #f2cc60;
+}
+
+#view-admin .admin-ticket-status.in_progress,
+#view-config .admin-ticket-status.in_progress {
+  background: rgba(88, 166, 255, 0.14);
+  color: #79c0ff;
+}
+
+#view-admin .admin-ticket-status.responded,
+#view-config .admin-ticket-status.responded {
+  background: rgba(168, 85, 247, 0.14);
+  color: #d2a8ff;
+}
+
+#view-admin .admin-ticket-status.resolved,
+#view-config .admin-ticket-status.resolved {
+  background: rgba(46, 160, 67, 0.14);
+  color: #7ee787;
+}
+
+#view-admin .admin-ticket-detail {
+  min-height: 390px;
+  padding: 14px;
+  border: 1px solid rgba(139, 148, 158, 0.11);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(88, 166, 255, 0.04), rgba(255, 255, 255, 0.018)),
+    rgba(255, 255, 255, 0.03);
+}
+
+#view-admin .admin-ticket-empty {
+  color: #9aa7bd;
+  font-size: 0.86rem;
+}
+
+#view-admin .admin-ticket-content {
+  display: grid;
+  gap: 12px;
+  grid-template-rows: auto minmax(110px, 1fr) auto auto auto;
+  min-height: 340px;
+}
+
+#view-admin .admin-ticket-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(139, 148, 158, 0.10);
+}
+
+#view-admin .admin-ticket-head strong {
+  display: block;
+  margin-top: 5px;
+  color: #f8fafc;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+#view-admin .admin-ticket-head select,
+#view-admin .admin-ticket-detail textarea {
+  border: 1px solid rgba(139, 148, 158, 0.18);
+  border-radius: 8px;
+  background: rgba(13, 17, 23, 0.92);
+  color: #f8fafc;
+}
+
+#view-admin .admin-ticket-head select {
+  min-width: 138px;
+  height: 38px;
+  padding: 0 10px;
+}
+
+#view-admin .admin-ticket-message,
+.ticket-conversation {
+  min-height: 92px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(13, 17, 23, 0.56);
+  color: #dbe7ff;
+  white-space: pre-wrap;
+}
+
+#view-admin .admin-ticket-message {
+  max-height: 190px;
+  overflow: auto;
+}
+
+#view-admin .admin-system-panel {
+  position: sticky;
+  top: 12px;
+}
+
+.ticket-conversation {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.ticket-message {
+  padding: 10px;
+  border: 1px solid rgba(139, 148, 158, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.ticket-message.admin {
+  border-color: rgba(88, 166, 255, 0.18);
+  background: rgba(88, 166, 255, 0.08);
+}
+
+.ticket-message.user {
+  border-color: rgba(168, 85, 247, 0.18);
+  background: rgba(168, 85, 247, 0.07);
+}
+
+.ticket-message span {
+  display: block;
+  margin-bottom: 6px;
+  color: #9aa7bd;
+  font-size: 0.72rem;
+}
+
+#view-admin .admin-ticket-detail textarea {
+  min-height: 104px;
+  padding: 12px;
+  resize: vertical;
+}
+
+#view-config {
+  color: #edf2ff;
+}
+
+#view-config .settings-layout {
+  display: grid;
+  gap: 16px;
+}
+
+#view-config .settings-profile-panel,
+#view-config .user-support-panel {
+  max-width: none;
+  border: 1px solid rgba(139, 148, 158, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.014)),
+    rgba(13, 17, 23, 0.86);
+}
+
+#view-config .settings-panel-head,
+#view-config .user-support-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+#view-config .settings-panel-head h2,
+#view-config .user-support-header h2 {
+  margin: 8px 0 0;
+  color: #f8fafc;
+  font-size: 1.16rem;
+  line-height: 1.2;
+}
+
+#view-config .settings-form {
+  display: grid;
+  gap: 14px;
+}
+
+#view-config .settings-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.58fr);
+  gap: 14px;
+}
+
+#view-config .settings-field,
+#view-config .settings-avatar-row {
+  display: grid;
+  gap: 8px;
+}
+
+#view-config .settings-field span,
+#view-config .settings-avatar-row span {
+  color: #9aa7bd;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+#view-config .settings-field input,
+#view-config .settings-field select,
+#view-config .user-ticket-reply textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(139, 148, 158, 0.18);
+  border-radius: 8px;
+  background: rgba(13, 17, 23, 0.92);
+  color: #f8fafc;
+  outline: none;
+}
+
+#view-config .settings-field input:focus,
+#view-config .settings-field select:focus,
+#view-config .user-ticket-reply textarea:focus {
+  border-color: rgba(88, 166, 255, 0.52);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.10);
+}
+
+#view-config .settings-avatar-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid rgba(139, 148, 158, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+#view-config .settings-avatar-row small {
+  min-width: 0;
+  color: #77859a;
+  font-size: 0.78rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#view-config .settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+#view-config .settings-primary-btn,
+#view-config .settings-secondary-btn,
+#view-config .settings-danger-btn {
+  min-height: 38px;
+  border-radius: 8px;
+  padding: 9px 13px;
+  color: #f8fafc;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#view-config .settings-primary-btn {
+  border: 1px solid rgba(88, 166, 255, 0.34);
+  background: rgba(88, 166, 255, 0.15);
+}
+
+#view-config .settings-secondary-btn {
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  background: rgba(168, 85, 247, 0.11);
+}
+
+#view-config .settings-danger-btn {
+  border: 1px solid rgba(218, 54, 51, 0.32);
+  background: rgba(218, 54, 51, 0.12);
+  color: #ffb4ad;
+}
+
+#view-config .user-support-header {
+  margin-bottom: 14px;
+}
+
+#view-config .user-ticket-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+  gap: 14px;
+}
+
+#view-config .user-ticket-list {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  max-height: 360px;
+  overflow: auto;
+}
+
+#view-config .user-ticket-detail {
+  min-height: 360px;
+  padding: 14px;
+  border: 1px solid rgba(139, 148, 158, 0.11);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+#view-config .user-ticket-empty {
+  color: #9aa7bd;
+  font-size: 0.86rem;
+}
+
+#view-config .user-ticket-content,
+#view-config .user-ticket-reply {
+  display: grid;
+  gap: 12px;
+}
+
+#view-config .user-ticket-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+#view-config .user-ticket-head span {
+  color: #9aa7bd;
+  font-size: 0.74rem;
+}
+
+#view-config .user-ticket-head strong {
+  display: block;
+  margin-top: 5px;
+  color: #f8fafc;
+}
+
+#view-config .user-ticket-reply textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+@media (max-width: 1100px) {
+  #view-admin .admin-grid,
+  #view-admin .admin-activity-grid,
+  #view-admin .admin-audit-list,
+  #view-admin .admin-ticket-layout,
+  #view-config .user-ticket-layout,
+  #view-config .settings-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #view-admin .admin-system-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  #view-admin .admin-header,
+  #view-admin .admin-panel-title,
+  #view-admin .admin-ticket-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  #view-admin .admin-header-actions {
+    justify-content: stretch;
+  }
+
+  #view-admin .admin-sync-badge {
+    justify-content: center;
+  }
+
+  #view-admin .admin-summary-bar {
+    align-items: stretch;
+  }
+
+  #view-admin .admin-summary-item {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+
+  #view-admin .admin-ticket-head select,
+  #view-admin .admin-refresh-btn,
+  #view-admin .admin-sync-badge {
+    width: 100%;
+  }
+
+  #view-admin .admin-ticket-list,
+  #view-admin .admin-audit-list {
+    max-height: 300px;
+  }
+
+  #view-admin .admin-ticket-detail {
+    min-height: 320px;
+  }
+
+  #view-config .settings-panel-head,
+  #view-config .user-support-header,
+  #view-config .settings-actions,
+  #view-config .settings-avatar-row {
+    align-items: stretch;
+  }
+
+  #view-config .settings-avatar-row {
+    grid-template-columns: 1fr;
+  }
+
+  #view-config .settings-primary-btn,
+  #view-config .settings-secondary-btn,
+  #view-config .settings-danger-btn {
+    width: 100%;
+  }
+}

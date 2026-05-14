@@ -1,0 +1,48 @@
+.table-container{
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+    margin-top: 20px;
+}
+
+.expense-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.expense-table th{
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #f0f2f5;
+    color: #64748b;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.expense-table td{
+    padding: 15px 12px;
+    border-bottom: 1px solid #f0f2f5;
+    color: #1e293b;
+}
+
+.badge{
+    background: #e2e8f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.amount-neg{
+    color: #e53e3e;
+    font-weight: bold;
+}
+
+.btn-delete{
+    background: none;
+    border: none;
+    cursor: pointer;
+    filter: grayscale(1);
+
+}

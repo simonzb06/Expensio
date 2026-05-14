@@ -1,0 +1,23 @@
+
+:root{
+
+  /*FONDOS*/
+
+  --bg-main: #0f1218;
+  --bg-panel: #161b22;
+  --bg-sidebar: #0d1117;
+
+  /*TEXTOS*/
+
+  --text-primary: #ffffff;
+  --text-secondary: #f0f6fc;
+  --text-dim: #8b949e;
+
+/*ACENTOS*/
+
+  --accent-purple: #814efc;
+  --accent-cyan: #26c196;
+  --accent-orange: #ff8c42;
+}
+
+

@@ -1,0 +1,110 @@
+.sidebar .nav-item {
+    color: #8b949e !important;
+}
+
+.sidebar .nav-item.active {
+    color: #f0f6fc !important; 
+    background: #161b22 !important;
+}
+
+
+
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #0d1117;
+    border-right: 1px solid #30363d;
+    padding: 25px 20px;
+    position: fixed; 
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    background: #21262d;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #f0f6fc;
+    margin-bottom: 10px;
+}
+
+.user-avatar {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #30363d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/*user-info h3 {
+    color: #f0f6fc;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.user-info small {
+    color: #8b949e;
+    display: block;
+    margin-bottom: 25px;
+} */
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-item {
+    all: unset; 
+    cursor: pointer;
+    padding: 12px 15px;
+    color: #8b949e !important; 
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    background: transparent !important; 
+    border: 1px solid transparent !important;
+}
+
+.nav-item.active {
+    background: #161b22 !important;
+    color: #f0f6fc !important;
+    border: 1px solid #30363d !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+.nav-item:hover:not(.active) {
+    background: #21262d !important;
+    color: #f0f6fc !important;
+}
+
+.login-highlight {
+    margin-top: auto;
+    margin-bottom: 18px;
+    color: #ffa657;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: left;
+    padding: 15px;
+}
+

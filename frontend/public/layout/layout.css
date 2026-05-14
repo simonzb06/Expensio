@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+}
+
+body.dark-theme {
+    background-color: #0d1117 !important;
+    color: #f0f6fc !important; 
+    font-family: sans-serif;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    flex: 1;
+}
+
+.nav-item {
+    background: rgba(255, 255, 255, 0.03) !important; 
+    border: 1px solid #30363d !important;
+    color: #8b949e !important;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+    width: 100%;
+}
+.nav-item.active {
+    background: rgba(88, 166, 255, 0.1) !important;
+    color: #58a6ff !important;
+    border: 1px solid rgba(88, 166, 255, 0.3) !important;
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #f0f6fc !important;
+}
+
+.main-content{
+    flex: 1;
+    margin-left: 260px;
+    padding: 40px;
+    min-height: 100vh;
+    background-color: #0d1117;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transition: all 03s ease;
+    
+    width: calc(100% - 260px);
+    box-sizing: border-box;
+}
+
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #30363d;
+    width: 100%;
+}
+.category-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 15px;
+
+}
+.view{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+.pro-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.pro-row > * {
+    min-width: 0;
+}
+
+.action-row{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.action-flex{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+}
+.pro-panel{
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+}
+.panel-tag{
+    display: block;
+    color: #8b949e;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+

@@ -1,0 +1,21 @@
+.analysis-grind{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 12px;
+}
+
+.analysis-card{
+    background: var(--card);
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.analysis-card.wide{
+    grid-column:1/-1;
+}
+
+.analysis-card canvas{
+    width: 100%;
+    height: auto;
+    display: block;
+}

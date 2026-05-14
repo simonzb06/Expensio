@@ -1,0 +1,218 @@
+body.dark-theme .action-flex button.tile-btn {
+    all: unset !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    
+    background: #161b22 !important; 
+    border: 1px solid #30363d !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    color: #f0f6fc !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
+    text-align: center !important;
+    transition: background 0.2s, border-color 0.2s !important;
+}
+
+body.dark-theme .action-flex button.tile-btn:hover {
+    background: #21262d !important;
+    border-color: #58a6ff !important; 
+}
+
+body.dark-theme .tile-icon {
+    font-size: 1.2rem;
+    display: block;
+}
+
+body.dark-theme .modal button.tile-btn,
+body.dark-theme .modal button.tile-btn.active {
+    all: unset !important;
+    background: #161b22 !important;
+    color: #f0f6fc !important;
+    border: 1px solid #30363d !important;
+    padding: 10px 20px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.2s !important;
+}
+
+body.dark-theme .modal button.tile-btn:hover {
+    background: #21262d !important;
+}
+
+body.dark-theme .modal .btn-cancel,
+body.dark-theme .modal button[type="button"] {
+    all: unset !important;
+    background: transparent !important;
+    color: #8b949e !important; 
+    border: 1px solid transparent !important;
+    padding: 10px 20px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-size: 0.9rem !important;
+    transition: 0.2s !important;
+    margin: 0 !important; 
+}
+
+body.dark-theme .modal .btn-cancel:hover {
+    color: #ff7b72 !important; 
+    background: rgba(255, 123, 114, 0.1) !important;
+}
+
+.body.dark-theme #modalAddTask button[type="submit"] {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    min-width: 120px;
+}
+
+#formAddTask{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+#formAddTask input, #formAddTask select {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    outline: none;   
+}
+
+.modal-action-row{
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.task-info{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.priority-tag{
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.p-rojo{
+    background: rgba(248, 81, 73, 0.1);
+    color: #f85149;
+    border: 1px solid rgba(248, 81, 73, 0.1);
+}
+
+.p-naranja{
+    background: rgba(210, 153, 34, 0.1);
+    color: #d29922;
+    border:  1px solid rgba(210, 153, 34, 0.4);
+}
+
+.p-verde {
+    background: rgba(63, 185, 80, 0.1);
+    color: #3fb950;
+    border: 1px solid rgba(63, 185, 80, 0.4);
+}
+
+
+.priority-badge{
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin: 10px;
+    text-transform: uppercase;
+}
+
+.p-alta { background: rgba(255, 123, 114, 0.15); color: #ff7b72; border: 1px solid #ff7b72; }
+.p-media { background: rgba(210, 153, 34, 0.15); color: #d29922; border: 1px solid #d29922; }
+.p-baja { background: rgba(63, 185, 80, 0.15); color: #3fb950; border: 1px solid #3fb950; }
+
+
+.task-item{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease;
+}
+
+.task-content{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-btn{
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.delete-btn .icon-x {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.delete-btn:hover {
+    background: #ef4444;
+    color: white;
+    transform: rotate(90deg);
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
+.delete-btn:active {
+    transform: scale(0.9) rotate(90deg);
+}
+
+.sidebar-btn.logout-active:hover { 
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    color: #ef4444 !important;
+}
+
+.sidebar-btn.logout-active i {
+    color: #ef4444 !important;
+}
+
+.nav-item.btn-logout { 
+    color: #ff5f5f;
+    transition: all 0.03s ease;
+}
+
+.nav-item-btn-logout:hover{
+    background: rgba(255, 95, 95, 0.1);
+    color: #ff3333 !important;
+}
+
+.nav-item.btn-logout i {
+    color: #ff5f5f;
+}
+
+
